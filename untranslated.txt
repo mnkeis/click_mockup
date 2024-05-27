@@ -1,0 +1,14 @@
+{
+  "es": [
+    "loginPageTitle",
+    "loginPageSocialLogin",
+    "loginScreenCredentialsLogin",
+    "loginScreenEmailInputLabel",
+    "loginScreenPasswordInputLabel",
+    "loginScreenRememberMeCheckbox",
+    "loginScreenRestorePasswordButton",
+    "loginScreenButtonLabel",
+    "loginScreenCreateAccountTitle",
+    "loginScreenSignUpButtonLabel"
+  ]
+}

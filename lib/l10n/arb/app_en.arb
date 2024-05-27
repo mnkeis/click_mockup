@@ -3,5 +3,47 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
+    },
+
+    "@__LOGIN_PAGE__": {},
+    "loginPageTitle": "Login",
+    "@loginPageTitle": {
+        "description": "Title shown on top of the login page"
+    },
+    "loginPageSocialLogin": "Enter with your preferred account",
+    "@loginPageSocialLogin": {
+        "description": "Title for social login buttons"
+    },
+    "loginScreenCredentialsLogin": "or, login with your credentials",
+    "@loginScreenCredentialsLogin": {
+        "description": "Title for email and password login"
+    },
+    "loginScreenEmailInputLabel": "Email",
+    "@loginScreenEmailInputLabel": {
+        "description": "Email input label"
+    },
+    "loginScreenPasswordInputLabel": "Password",
+    "@loginScreenPasswordInputLabel": {
+        "description": "Password input label"
+    },
+    "loginScreenRememberMeCheckbox": "Remember me",
+    "@loginScreenRememberMeCheckbox": {
+        "description": "Text for the 'Remember Me' checkbox"
+    },
+    "loginScreenRestorePasswordButton": "Restore password",
+    "@loginScreenRestorePasswordButton": {
+        "description": "Text label for restore password button"
+    },
+    "loginScreenButtonLabel": "Log Me In",
+    "@loginScreenButtonLabel": {
+        "description": "Label for login button"
+    },
+    "loginScreenCreateAccountTitle": "Don't have an account?",
+    "@loginScreenCreateAccountTitle": {
+        "description": "Text for taking user to create an account"
+    },
+    "loginScreenSignUpButtonLabel": "Sign Up",
+    "@loginScreenSignUpButtonLabel": {
+        "description": "Label for signup button"
     }
 }
