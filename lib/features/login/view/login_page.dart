@@ -21,134 +21,150 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.5,
                   child: Image(
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.4,
                     image: const NetworkImage(
                       'http://ntdns.host/logos/logo_click_2021_2.png',
                     ),
                   ),
                 ),
-                const CardBorder(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Align(
-                        child: Text(
-                          context.l10n.loginPageTitle,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      Align(
-                        child: Text(
-                          context.l10n.loginPageSocialLogin,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // TODO: Replace with google signin button (round)
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.android),
-                          ),
-                          // TODO: Replace with apple sigin button (round)
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.apple),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 1,
-                              color: Colors.black54,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              context.l10n.loginScreenCredentialsLogin,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: 1,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: context.l10n.loginScreenEmailInputLabel,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: context.l10n.loginScreenPasswordInputLabel,
-                          suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.visibility_off),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
+                Expanded(
+                  child: HalfCard(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              Checkbox(
-                                visualDensity: VisualDensity.compact,
-                                value: false,
-                                onChanged: (value) {},
+                              const SizedBox(height: 30),
+                              Align(
+                                child: Text(
+                                  context.l10n.loginPageTitle,
+                                  style: Theme.of(context).textTheme.titleLarge,
+                                ),
                               ),
-                              Text(
-                                context.l10n.loginScreenRememberMeCheckbox,
-                                style: Theme.of(context).textTheme.bodySmall,
+                              const SizedBox(height: 30),
+                              Align(
+                                child: Text(
+                                  context.l10n.loginPageSocialLogin,
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  // TODO: Replace with google signin button (round)
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.android),
+                                  ),
+                                  // TODO: Replace with apple sigin button (round)
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.apple),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const HorizontalLine(),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                    ),
+                                    child: Text(
+                                      context.l10n.loginScreenCredentialsLogin,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                  ),
+                                  const HorizontalLine(),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              TextField(
+                                decoration: InputDecoration(
+                                  labelText:
+                                      context.l10n.loginScreenEmailInputLabel,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              TextField(
+                                decoration: InputDecoration(
+                                  labelText: context
+                                      .l10n.loginScreenPasswordInputLabel,
+                                  suffixIcon: IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.visibility_off),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                        visualDensity: VisualDensity.compact,
+                                        value: false,
+                                        onChanged: (value) {},
+                                      ),
+                                      Text(
+                                        context
+                                            .l10n.loginScreenRememberMeCheckbox,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                      ),
+                                    ],
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      context.l10n
+                                          .loginScreenRestorePasswordButton,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 30),
+                              FilledButton(
+                                onPressed: () => context
+                                    .read<AuthBloc>()
+                                    .add(Authenticate()),
+                                child:
+                                    Text(context.l10n.loginScreenButtonLabel),
                               ),
                             ],
                           ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              context.l10n.loginScreenRestorePasswordButton,
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  context.l10n.loginScreenCreateAccountTitle,
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.of(context)
+                                      .push<void>(SignupPage.route()),
+                                  child: Text(
+                                    context.l10n.loginScreenSignUpButtonLabel,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 30),
-                      FilledButton(
-                        onPressed: () =>
-                            context.read<AppBloc>().add(Authenticate()),
-                        child: Text(context.l10n.loginScreenButtonLabel),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(context.l10n.loginScreenCreateAccountTitle),
-                TextButton(
-                  onPressed: () =>
-                      Navigator.of(context).push<void>(SignupPage.route()),
-                  child: Text(context.l10n.loginScreenSignUpButtonLabel),
                 ),
               ],
             ),

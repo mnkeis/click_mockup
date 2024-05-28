@@ -3,13 +3,14 @@ import 'package:click_mockup/features/features.dart';
 import 'package:flutter/material.dart';
 
 List<Page<void>> onGenerateAppPages(
-  AppStatus status,
+  AuthState state,
   List<Page<dynamic>> pages,
 ) {
-  switch (status) {
-    case AppInitial():
+  switch (state) {
+    case AuthInitial():
+    case AuthUnauthenticated():
       return [LoginPage.page()];
-    case AppAuthenticated():
+    case AuthAuthenticated():
       return [HomePage.page()];
   }
 }
