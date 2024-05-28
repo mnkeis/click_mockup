@@ -8,6 +8,7 @@ ThemeData theme(Color seedColor) {
   final darker = HSLColor.fromColor(seedColor).withLightness(0.45).toColor();
   return ThemeData(
     colorSchemeSeed: seedColor,
+
     scaffoldBackgroundColor: Colors.grey.shade200,
     textTheme: TextTheme(
       titleLarge: TextStyle(
@@ -16,7 +17,19 @@ ThemeData theme(Color seedColor) {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      border: const OutlineInputBorder(),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.grey.shade400,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(6)),
+      ),
+      border: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(6)),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: darker),
+        borderRadius: const BorderRadius.all(Radius.circular(6)),
+      ),
       isDense: true,
       filled: true,
       fillColor: Colors.grey.shade200,
