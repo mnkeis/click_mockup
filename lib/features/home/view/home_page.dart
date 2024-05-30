@@ -1,3 +1,4 @@
+import 'package:click_mockup/features/home/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,6 +8,23 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          HomeSection.home.body,
+          Positioned(
+            bottom: 15,
+            left: size.width * 0.1,
+            right: size.width * 0.1,
+            child: HomeNavigationWidget(
+              section: HomeSection.profile,
+              onTap: (value) {},
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
