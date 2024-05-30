@@ -27,6 +27,9 @@ class LoginPage extends StatelessWidget {
             context.l10n.loginPageTitle,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontSize: size.width * 0.11,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? ColorsConstants.pink
+                      : Colors.white,
                 ),
           ),
           Column(

@@ -1,6 +1,8 @@
+import 'package:click_mockup/constants/colors_constants.dart';
 import 'package:click_mockup/features/home/widgets/sections/initial/widgets/account/widgets/account_app_bar.dart';
 import 'package:click_mockup/features/home/widgets/sections/initial/widgets/account/widgets/account_dropdown_widget.dart';
 import 'package:click_mockup/features/home/widgets/sections/initial/widgets/account/widgets/staggered_grid_view.dart';
+import 'package:click_mockup/features/home/widgets/sections/initial/widgets/historical/view/historical_view.dart';
 import 'package:click_mockup/widgets/half_card.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,7 @@ class AccountView extends StatelessWidget {
         child: Stack(
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AccountAppBar(
                   actions: [
@@ -36,8 +39,36 @@ class AccountView extends StatelessWidget {
                     }),
                   ),
                 ),
-                StaggeredGridView(
-                  spacing: size.width * 0.05,
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 15,
+                            horizontal: size.width * 0.05,
+                          ),
+                          child: Text(
+                            'Acciones permitidas (6)',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? ColorsConstants.pink
+                                      : Colors.white,
+                                ),
+                          ),
+                        ),
+                        StaggeredGridView(
+                          spacing: size.width * 0.05,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -49,7 +80,7 @@ class AccountView extends StatelessWidget {
                 child: HalfCard(
                   height: 40,
                   onTap: () {
-                    // Navigator.of(context).push<void>(SignupPage.route());
+                    Navigator.of(context).push<void>(HistoricalView.route());
                   },
                   borderRadius: BorderRadius.circular(20),
                   isShadow: false,

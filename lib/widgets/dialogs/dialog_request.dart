@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 class DialogRequest extends StatelessWidget {
   const DialogRequest({
-    super.key,
+    required this.onComfirm,
     required this.title,
     required this.subTitle,
     required this.body,
+    super.key,
     this.textButton = '',
-    required this.onComfirm,
   });
 
   final String title;
@@ -33,9 +33,23 @@ class DialogRequest extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(title),
-            Text(subTitle),
-            body,
+            Text(
+              title,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 7),
+            if (subTitle.isEmpty)
+              const SizedBox.shrink()
+            else
+              Text(
+                subTitle,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: body,
+            ),
             Row(
               children: [
                 Expanded(
@@ -45,7 +59,9 @@ class DialogRequest extends StatelessWidget {
                     border: Border.all(),
                     isShadow: false,
                     borderRadius: BorderRadius.circular(10),
-                    onTap: () => Navigator.pop(context),
+                    onTap: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                    },
                     child: Center(
                       child: Text(
                         'Cancelar',

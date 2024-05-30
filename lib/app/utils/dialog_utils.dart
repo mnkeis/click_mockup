@@ -1,5 +1,6 @@
-// ignore_for_file: inference_failure_on_function_invocation
+// ignore_for_file: inference_failure_on_function_invocation, inference_failure_on_function_return_type
 
+import 'package:click_mockup/widgets/dialogs/dialog_calendar.dart';
 import 'package:click_mockup/widgets/dialogs/dialog_confirm.dart';
 import 'package:click_mockup/widgets/dialogs/dialog_generic.dart';
 import 'package:click_mockup/widgets/dialogs/dialog_loading.dart';
@@ -73,6 +74,20 @@ class DialogUtils {
           textButton: textButton ?? 'Aceptar',
           body: body ?? Container(),
           onComfirm: onComfirm ?? () {},
+        );
+      },
+    );
+  }
+
+  static Future<void> calendar(
+    BuildContext context, {
+    required Function(DateTime) changeDate,
+  }) async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return DialogCalendar(
+          changeDate: changeDate,
         );
       },
     );

@@ -1,14 +1,38 @@
+import 'package:click_mockup/app/utils/dialog_utils.dart';
 import 'package:click_mockup/constants/colors_constants.dart';
 import 'package:click_mockup/features/home/widgets/sections/initial/widgets/account/widgets/account_app_bar.dart';
 import 'package:click_mockup/features/home/widgets/sections/initial/widgets/account/widgets/account_dropdown_widget.dart';
+import 'package:click_mockup/features/home/widgets/sections/initial/widgets/historical/widgets/expanded_list.dart';
+import 'package:click_mockup/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class HistoricalView extends StatelessWidget {
+enum HistoricalOrder {
+  oldestToNewest,
+  newestToOldest;
+
+  String get name {
+    switch (this) {
+      case HistoricalOrder.oldestToNewest:
+        return 'Oldest to Newest';
+      case HistoricalOrder.newestToOldest:
+        return 'Newest to Oldest';
+    }
+  }
+}
+
+class HistoricalView extends StatefulWidget {
   const HistoricalView({super.key});
 
   static Route<void> route() {
     return MaterialPageRoute<void>(builder: (_) => const HistoricalView());
   }
+
+  @override
+  State<HistoricalView> createState() => _HistoricalViewState();
+}
+
+class _HistoricalViewState extends State<HistoricalView> {
+  bool isSearch = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +77,10 @@ class HistoricalView extends StatelessWidget {
                           child: Text(
                             'Histórico de actividad',
                             style: textTheme.titleLarge!.copyWith(
-                              color: ColorsConstants.pink,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? ColorsConstants.pink
+                                  : Colors.white,
                             ),
                           ),
                         ),
@@ -67,44 +94,116 @@ class HistoricalView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.filter_list,
-                                size: 20,
+                            HalfCard(
+                              width: 45,
+                              height: 45,
+                              backgrounColor: Colors.transparent,
+                              borderRadius: BorderRadius.circular(12),
+                              isShadow: false,
+                              child: PopupMenuButton<HistoricalOrder>(
+                                elevation: 5,
+                                splashRadius: 1,
+                                shadowColor: Colors.black12,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                constraints: BoxConstraints(
+                                  maxWidth: size.width,
+                                  minWidth: size.width,
+                                ),
+                                icon: const Icon(
+                                  Icons.filter_list,
+                                  size: 20,
+                                ),
+                                itemBuilder: (_) {
+                                  return HistoricalOrder.values
+                                      .map(_order)
+                                      .toList();
+                                },
                               ),
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                await DialogUtils.calendar(
+                                  context,
+                                  changeDate: (date) {},
+                                );
+                              },
                               icon: const Icon(
                                 Icons.calendar_month,
                                 size: 20,
                               ),
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.search,
-                                size: 20,
+                            HalfCard(
+                              width: 45,
+                              height: 45,
+                              backgrounColor:
+                                  isSearch ? null : Colors.transparent,
+                              borderRadius: BorderRadius.circular(12),
+                              isShadow: false,
+                              onTap: () {
+                                setState(() {
+                                  isSearch = !isSearch;
+                                });
+                              },
+                              child: const Center(
+                                child: Icon(
+                                  Icons.search,
+                                  size: 20,
+                                ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  if (isSearch)
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: HalfCard(
+                          height: 50,
+                          borderRadius: BorderRadius.circular(12),
+                          isShadow: false,
+                          width: size.width * 0.9,
+                          /* child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Buscar',
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                        ), */
+                          child: const Align(
+                            alignment: Alignment.centerLeft,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                fillColor: Colors.transparent,
+                                hintText: 'Buscar',
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  else
+                    const SizedBox.shrink(),
+                  const SizedBox(height: 15),
                   Expanded(
                     child: ListView.separated(
                       itemCount: 3,
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 15),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.05),
                       itemBuilder: (BuildContext context, int index) {
                         return AccordionWidget(
                           title:
-                              'Ofrecemos productos y componentes led de la mas alta.',
+                              'Ofrecemos productos y componentes led de la mas alta, Ofrecemos productos y componentes led de la mas alta, Ofrecemos productos y componentes led de la mas alta.',
                           subtitle: 'Tipo de evento',
                           expandedContent: Container(),
+                          backgroundColor: ColorsConstants.crimson,
                         );
                       },
                     ),
@@ -117,48 +216,11 @@ class HistoricalView extends StatelessWidget {
       ),
     );
   }
-}
 
-class AccordionWidget extends StatefulWidget {
-  final String title;
-  final String subtitle;
-  final Widget expandedContent;
-
-  const AccordionWidget({
-    Key? key,
-    required this.title,
-    required this.subtitle,
-    required this.expandedContent,
-  }) : super(key: key);
-
-  @override
-  _AccordionWidgetState createState() => _AccordionWidgetState();
-}
-
-class _AccordionWidgetState extends State<AccordionWidget> {
-  bool _isExpanded = false;
-
-  void _toggleExpand() {
-    setState(() {
-      _isExpanded = !_isExpanded;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(widget.title),
-          subtitle: Text(widget.subtitle),
-          onTap: _toggleExpand,
-        ),
-        if (_isExpanded)
-          Container(
-            width: MediaQuery.of(context).size.width * 0.5,
-            child: widget.expandedContent,
-          ),
-      ],
+  PopupMenuItem<HistoricalOrder> _order(HistoricalOrder e) {
+    return PopupMenuItem(
+      onTap: () {},
+      child: Text(e.name),
     );
   }
 }

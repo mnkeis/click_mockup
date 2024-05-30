@@ -49,9 +49,11 @@ class _ProfileViewState extends State<ProfileView> {
             header: Center(
               child: Text(
                 'Mi perfil',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: textTheme.titleLarge!.copyWith(
-                  fontSize: 18,
                   color: ColorsConstants.grey,
+                  fontSize: 18,
                 ),
               ),
             ),

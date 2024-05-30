@@ -2,14 +2,15 @@
 
 import 'package:click_mockup/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:list_tile_switch/list_tile_switch.dart';
 
 class CustomSwitchTile extends StatelessWidget {
   const CustomSwitchTile({
+    required this.onChanged,
     super.key,
     this.title = '',
     this.value = false,
-    required this.icon,
-    required this.onChanged,
+    this.icon = '',
   });
 
   final bool value;
@@ -24,34 +25,27 @@ class CustomSwitchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SwitchListTile(
+    return ListTileSwitch(
       value: value,
-      activeColor: ColorsConstants.grey,
-      thumbColor: WidgetStatePropertyAll(
-        thumbColor,
-      ),
-      trackColor: WidgetStatePropertyAll(color),
-      trackOutlineColor: WidgetStatePropertyAll(color),
-      title: Row(
-        children: [
-          Image.asset(
-            icon,
-            height: 20,
-            fit: BoxFit.fitHeight,
-          ),
-          const SizedBox(width: 7),
-          Expanded(
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: ColorsConstants.grey,
-                    fontWeight: FontWeight.w500,
-                  ),
+      leading: icon.isEmpty
+          ? null
+          : Image.asset(
+              icon,
+              height: 20,
+              fit: BoxFit.fitHeight,
+              color: ColorsConstants.pink,
             ),
-          ),
-        ],
-      ),
       onChanged: onChanged,
+      switchType: SwitchType.cupertino,
+      switchActiveColor: ColorsConstants.grey.withOpacity(0.2),
+      dense: true,
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: ColorsConstants.grey,
+              fontWeight: FontWeight.w500,
+            ),
+      ),
     );
   }
 }

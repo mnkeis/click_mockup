@@ -37,6 +37,7 @@ class AccountAppBar extends StatelessWidget {
                 : HalfCard(
                     height: itemSize,
                     isShadow: false,
+                    backgrounColor: Colors.white,
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     borderRadius: BorderRadius.circular(12),
                     child: header,
@@ -56,6 +57,7 @@ class AccountAppBar extends StatelessWidget {
     return HalfCard(
       width: 42,
       height: 42,
+      backgrounColor: Colors.white,
       margin: const EdgeInsets.only(left: 12),
       shape: BoxShape.circle,
       isShadow: false,
@@ -63,6 +65,7 @@ class AccountAppBar extends StatelessWidget {
       child: Icon(
         icon,
         size: 20,
+        color: Colors.black,
       ),
     );
   }

@@ -26,7 +26,6 @@ class DialogGeneric extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      backgroundColor: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 15,

@@ -1,6 +1,7 @@
+import 'package:click_mockup/app/utils/dialog_utils.dart';
 import 'package:click_mockup/constants/images_constants.dart';
 import 'package:click_mockup/features/home/widgets/sections/initial/widgets/account/widgets/account_item_card.dart';
-import 'package:click_mockup/features/home/widgets/sections/initial/widgets/historical/view/historical_view.dart';
+import 'package:click_mockup/widgets/custom_switch_tile.dart';
 import 'package:flutter/material.dart';
 
 enum AccountType {
@@ -72,8 +73,62 @@ class StaggeredGridView extends StatelessWidget {
           color: Colors.blue,
           icon: ImagesConstants.openLock,
           name: AccountType.values[index].name,
-          onTap: () {
-            Navigator.of(context).push<void>(HistoricalView.route());
+          onTap: () async {
+            await DialogUtils.request(
+              context,
+              title: 'Ingresa tu clave',
+              subTitle:
+                  'Ingresa tu clave para poder activar la alamar que necesitas',
+              body: const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Nº de clave',
+                ),
+              ),
+              textButton: 'Aplicar',
+              onComfirm: () async {
+                Navigator.of(context, rootNavigator: true).pop();
+                await DialogUtils.request(
+                  context,
+                  title: 'Anular zonas',
+                  body: Column(
+                    children: [
+                      CustomSwitchTile(
+                        title: 'Puerta de entrada',
+                        onChanged: (p0) {},
+                      ),
+                      CustomSwitchTile(
+                        title: 'Ventana frente',
+                        onChanged: (p0) {},
+                      ),
+                      CustomSwitchTile(
+                        title: 'Galería',
+                        onChanged: (p0) {},
+                      ),
+                      CustomSwitchTile(
+                        title: 'Quincho',
+                        onChanged: (p0) {},
+                      ),
+                      CustomSwitchTile(
+                        title: 'Espacio - 1',
+                        onChanged: (p0) {},
+                      ),
+                      CustomSwitchTile(
+                        title: 'Espacio - 2',
+                        onChanged: (p0) {},
+                      ),
+                      CustomSwitchTile(
+                        title: 'Espacio - 3',
+                        onChanged: (p0) {},
+                      ),
+                    ],
+                  ),
+                  textButton: 'Aplicar',
+                  onComfirm: () {
+                    Navigator.of(context, rootNavigator: true).pop();
+                  },
+                );
+              },
+            );
           },
         );
       },

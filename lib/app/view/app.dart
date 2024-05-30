@@ -37,7 +37,7 @@ class AppView extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: theme(seedColor),
           darkTheme: darkTheme(seedColor),
-          themeMode: themeMode,
+          themeMode: ThemeMode.light, // themeMode,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           home: FlowBuilder<AuthState>(
